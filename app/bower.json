@@ -1,0 +1,35 @@
+{
+  "name": "leads-app",
+  "version": "0.0.1",
+  "authors": [
+    "Doron Segal <doron2402@gmail.com>"
+  ],
+  "description": "exprees hogan bower node.js bootstrap angular mysql",
+  "main": "app.js",
+  "keywords": [
+    "node.js",
+    "express",
+    "hogan",
+    "bower",
+    "bootstrap",
+    "angular"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.10",
+    "angular-route": "~1.2.10",
+    "angular-cookies": "~1.2.10",
+    "Font-Awesome": "latest",
+    "angular-google-chart": "~0.0.8",
+    "bootstrap": "~3.1.1"
+  }
+}
