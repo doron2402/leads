@@ -2,7 +2,10 @@ var Hapi = require('hapi'),
 	port = 8000,
 	serverAddress = 'localhost',
 	server = Hapi.createServer(serverAddress, port),
-	routes = require('./routes');
+	routes = require('./routes'),
+	mongo = require('./models/baseModel');
+	console.log(mongo);
+
 
 // Add the route
 server.route([
