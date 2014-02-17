@@ -1,16 +1,44 @@
+//login
+exports.loginUser = function(req, res){
 
-/*
- * GET users listing.
- */
+	console.log(req.body);
 
-exports.list = function(req, res){
-  res.send("respond with a resource");
+	if (req.body && req.body.username && req.body.password && req.body.password.length > 4){
+		//Check with DB
+		var Model = require('../models/userModel'),
+			crypto = require('crypto'),
+  			password = crypto.createHash('sha1');
+
+			password.update(req.body.password);
+
+			var tmp_pass = password.digest('hex');
+
+		return new Model.UserModel({'username': req.body.username}).fetch().then(function(model){
+			
+			if (model.get('password') == tmp_pass)
+			{
+
+				var session_id = crypto.createHash('sha1');
+				session_id.update('#' + model.get('id') + '-' + model.get('username'));
+
+				req.session.user_id = session_id.digest('hex');
+				req.session.userId = model.get('id');
+				req.session.userType = model.get('type');
+
+				return res.json({redirect: '/backoffice',dataReturn: 'success' });
+			}	
+			else
+				return res.json({redirect: '#',dataReturn: 'fail' });
+
+			
+		});
+		
+	}else
+		return res.json({Error: 'Bad username or password'});
 };
 
-exports.login = function(req, res){
-	res.render('pages/login', { title: 'Login' });
-}
-
-exports.auth = function (req, res) {
-	res.json({'auth': true});
-}
+exports.logoutUser = function(req, res, next){
+	delete req.session.user_id;
+	delete req.session.userId;
+	return res.redirect('/');
+};

@@ -5,3 +5,7 @@ exports.index = function(req, res){
 exports.users = require('./user');
 
 exports.main = require('./main');
+
+exports.auth = require('./auth');
+
+exports.backend = require('./backend');

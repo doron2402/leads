@@ -30,6 +30,7 @@
     "angular-cookies": "~1.2.10",
     "Font-Awesome": "latest",
     "angular-google-chart": "~0.0.8",
-    "bootstrap": "~3.1.1"
+    "bootstrap": "~3.1.1",
+    "angular-bootstrap": "~0.10.0"
   }
 }

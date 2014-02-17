@@ -1,8 +1,4 @@
-exports.contactPage = function(req, res){
-  res.send("respond with a resource");
-};
-
 exports.saveContactInfo = function (req, res) {
-	console.log(req);
+	console.log(req.body);
 	res.json({data: 'Saved'});
 }

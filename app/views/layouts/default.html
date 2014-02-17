@@ -4,16 +4,59 @@
   <title>{{title}}</title>
   {{> header}}
 </head>
-<body data-spy="scroll" data-target=".bs-docs-sidebar">
-{{> topnav}}
-<div class="hero">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-10 col-sm-offset-1">
-      {{{ yield }}}
+<body data-spy="scroll" data-target=".navbar-example">
+    <nav id="navbar-example2" class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Project Name</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-example">
+	          <ul class="nav navbar-nav navbar-example">
+	            <li class=""><a href="#page-home">Home</a></li>
+	            <li class=""><a href="#page-gallery">Gallery</a></li>
+	            <li class=""><a href="#about">About</a></li>
+	            <li class=""><a href="#page-contact">Contact</a></li>
+	          </ul>
+	        <ul class="nav navbar-nav navbar-right">
+	        	<li><a href="#Login" data-toggle="modal" data-target="#signin">Sign In</a></li>
+	        </ul>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+    </nav>
+    <div data-spy="scroll" data-target="#navbar-example2" data-offset="0" class="scrollspy-example">
+      <div id="page-home" class="scrollspy-section">
+      	<div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjI1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjMxcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NTAweDUwMDwvdGV4dD48L3N2Zz4=">
+        </div>
+      </div>
+      </div>
+      <div id="page-gallery" class="scrollspy-section">
+			{{> static_carousel}}
+	  </div>
+      <div id="about" class="scrollspy-section">
+      		{{> static_about}}
+      </div>
+      <div id="page-contact" class="scrollspy-section">
+      		{{> static_contact_form}}
+      </div>
+      
+      {{> static_signin}}
+
+     
+      {{{ yield }}}
+<script>
+$(document).ready(function(){
+	$('body').scrollspy({ target: '.navbar-example' })
+});
+$('[data-spy="scroll"]').each(function () {
+  var $spy = $(this).scrollspy('refresh')
+})
+</script>
+
 </body>
 </html>

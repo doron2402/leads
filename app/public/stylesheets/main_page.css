@@ -1,0 +1,24 @@
+.scrollspy-section {
+	margin-top:10px;
+	padding-top:30px;
+}
+.navbar-default {
+	background-color: #fff;
+	border-color: #f3f4f5;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color:#fff;
+  font-size:120%;
+  font-weight:bold;
+}
+.navbar-header {
+	padding-left:10px;
+	padding-right:10px;
+}
+#page-contact {
+	border-top: 3px solid #2a6496;
+	margin-top: 40px;
+}
