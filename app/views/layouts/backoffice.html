@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="backOfficeApp">
 <head>
-  <title>{{title}}</title>
+  <title>{{site.title}}</title>
   {{> header_backoffice}}
 </head>
-<body data-target="">
+<body>
+     {{msg}}
      
       {{{ yield }}}
 

@@ -1,0 +1,1 @@
+var backOfficeApp = angular.module('backOfficeApp', ['ngRoute','ngCookies']);  

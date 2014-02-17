@@ -13,13 +13,21 @@ app.engine('html', require('hogan-express'));
 app.set('view engine', 'html');
 app.set('layout', 'layouts/default');
 app.locals({
-    site: { title: 'SpeadLeads',keywords: 'node.js, leads system' description: 'description', contact: '515-515-5111' },
-    author: { name: 'Doron Segal', contact: 'doron2402@gmail.com', site: 'http://segaldoron.com' }
+    site: { 
+    	title: 'SpeadLeads',
+    	keywords: 'node.js, leads system', 
+    	description: 'description', 
+    	contact: '515-515-5111' 
+    },author: { 
+    	name: 'Doron Segal', 
+    	contact: 'doron2402@gmail.com', 
+    	site: 'http://segaldoron.com' 
+    }
 });
 app.set('partials', { 
 	header: "partials/header", 
 	topnav:"partials/topnav", 
-	header_backoffice: "partials/header_backoffice"
+	header_backoffice: "partials/header_backoffice",
 	static_carousel: "static-page/carousel",
 	static_about: "static-page/about",
 	static_contact_form: "static-page/contact_form",
