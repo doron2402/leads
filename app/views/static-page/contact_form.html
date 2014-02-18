@@ -46,22 +46,27 @@
 				contact.email = $("input[name='email']").val();
 				contact.phone = $("input[name='phone']").val();
 				contact.company = $("input[name='company']").val();
-				contact.msg = $("textarea#message").val();
+				contact.message = $("textarea#message").val();
+			if (contact.name && (contact.email || contact.phone) ){
 
-			var request = $.ajax({
-			  url: "/contact",
-			  type: "POST",
-			  data: contact
-			});
-			 
-			request.done(function( ret ) {
-				console.log(ret);
-				$('form#contact').html('<p>Thanks</p>');
-			});
-			 
-			request.fail(function( jqXHR, textStatus ) {
-			  alert( "Request failed: " + textStatus );
-			});	
+				var request = $.ajax({
+				  url: "/contact",
+				  type: "POST",
+				  data: contact
+				});
+				 
+				request.done(function( ret ) {
+					console.log(ret);
+					if (ret.error){
+						alert(ret.error);
+					}else
+						$('form#contact').html(ret.msg);
+				});
+				 
+				request.fail(function( jqXHR, textStatus ) {
+				  alert( "Request failed: " + textStatus );
+				});		
+			}
 		});
 	});
 </script>
