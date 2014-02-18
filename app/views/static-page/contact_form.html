@@ -18,14 +18,50 @@
 						<input class="form-control" id="email" name="email" placeholder="Email" type="email" required />
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-xs-6 col-md-6 form-group">
+						<input class="form-control" id="company" name="company" placeholder="Company" type="text" required autofocus />
+					</div>
+					<div class="col-xs-6 col-md-6 form-group">
+						<input class="form-control" id="phone" name="phone" placeholder="Phone" type="phone" required />
+					</div>
+				</div>
 				<textarea class="form-control" id="message" name="message" placeholder="Message" rows="5"></textarea>
 				<br />
 				<div class="row">
 					<div class="col-xs-12 col-md-12 form-group">
-						<button class="btn btn-primary pull-right" type="submit">Submit</button>
+						<button id="contact-form-submit-btn" class="btn btn-primary pull-right" type="submit">Submit</button>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+<script>
+	$(document).ready(function(){
+		$('#contact-form-submit-btn').click(function(e){
+			e.preventDefault();
+			var contact = {}
+				contact.name = $("input[name='name']").val();
+				contact.email = $("input[name='email']").val();
+				contact.phone = $("input[name='phone']").val();
+				contact.company = $("input[name='company']").val();
+				contact.msg = $("textarea#message").val();
+
+			var request = $.ajax({
+			  url: "/contact",
+			  type: "POST",
+			  data: contact
+			});
+			 
+			request.done(function( ret ) {
+				console.log(ret);
+				$('form#contact').html('<p>Thanks</p>');
+			});
+			 
+			request.fail(function( jqXHR, textStatus ) {
+			  alert( "Request failed: " + textStatus );
+			});	
+		});
+	});
+</script>
