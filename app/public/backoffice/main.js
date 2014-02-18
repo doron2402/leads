@@ -1,1 +1,1 @@
-var backOfficeApp = angular.module('backOfficeApp', ['ngRoute','ngCookies']);  
+var backOfficeApp = angular.module('backOfficeApp', ['ngRoute','ngCookies','ui.bootstrap']);

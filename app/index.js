@@ -28,6 +28,7 @@ app.set('partials', {
 	header: "partials/header", 
 	topnav:"partials/topnav", 
 	header_backoffice: "partials/header_backoffice",
+	footer_backoffice: "partials/footer_backoffice",
 	static_carousel: "static-page/carousel",
 	static_about: "static-page/about",
 	static_contact_form: "static-page/contact_form",
@@ -57,7 +58,7 @@ app.post('/contact', routes.main.saveContactInfo);
 
 //Login
 app.post('/login', routes.users.loginUser);
-
+app.post('/logout', auth.checkAuth, routes.users.logoutUser);
 //Backend
 app.get('/backoffice', auth.checkAuth, routes.backend.dashboard);
 
