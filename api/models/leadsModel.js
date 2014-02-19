@@ -15,6 +15,7 @@ var mongoose = require('../lib/mongodb'),
   	channel :  	{ type: String, default: 'NULL' },
   	reffer  :  	{ type: String, default: 'NULL' },
   	date    :   { type: Date, default: Date.now },
+    transformed : { type: String, default: 0},   
   	dayOfWeek:  { type: Number, default: -1 }
 });
 
