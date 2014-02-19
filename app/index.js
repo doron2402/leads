@@ -32,7 +32,8 @@ app.set('partials', {
 	static_carousel: "static-page/carousel",
 	static_about: "static-page/about",
 	static_contact_form: "static-page/contact_form",
-	static_signin: "static-page/signin.html"
+	static_signin: "static-page/signin.html",
+    nav_head_backoffice: "partials/nav_head_backoffice"
 
 });
 app.use(express.favicon("public/favicon.ico"));

@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html ng-app="backOfficeApp">
-<head>
-  <title>{{site.title}}</title>
-  {{> header_backoffice}}
-</head>
-<body ng-controller="mainController">
-	<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top">
     	<div class="container">
         	<div class="navbar-header">
           	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -54,13 +47,3 @@
         </div><!--/.nav-collapse -->
       </div>
 	</div>
-	
-    <div class="container gap-8">
-    	<div ng-view></div>
-    </div> <!-- /container -->
-     
-      {{{ yield }}}
-
-    {{> footer_backoffice}}
-</body>
-</html>

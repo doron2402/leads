@@ -25,10 +25,5 @@ exports.setTraffic = function(request, reply){
 	else
 		return reply({'data': 'Missing Argument'});
 
-
-	
-
-	
-	
 };
 

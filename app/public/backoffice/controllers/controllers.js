@@ -11,8 +11,28 @@ backOfficeApp.controller('clientsController', function($scope, $http){
 	$scope.msg = 'clients';
 });
 
-backOfficeApp.controller('campignsController', function($scope, $http) {
-	$scope.msg = 'campigns';
+backOfficeApp.controller('campignsController', function($scope, $http, $location) {
+  console.log($location);
+	var actionPath = $location.$$absUrl.split('/').pop().toString().toLowerCase();
+  console.log(actionPath);
+  switch (actionPath){
+    case 'create':
+      console.log('create');
+      break;
+    case 'read':
+      console.log('read');
+      break;
+    case 'edit':
+      console.log('edit');
+      break;
+    case 'delete':
+      console.log('del');
+      break;
+    default:
+      console.log('all');
+      break;
+  }
+  $scope.msg = 'campigns';
 });
 
 

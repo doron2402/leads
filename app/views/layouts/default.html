@@ -51,11 +51,22 @@
       {{{ yield }}}
 <script>
 $(document).ready(function(){
-	$('body').scrollspy({ target: '.navbar-example' })
+	$('body').scrollspy({ target: '.navbar-example' });
+  //Adding smooth navigation
+  $("nav#navbar-example2 .container-fluid .navbar-example ul.navbar-example li a[href^='#']").on('click', function(e){ 
+   e.preventDefault();
+   var hash = this.hash;
+   $('html, body').animate({
+       scrollTop: $(this.hash).offset().top
+     }, 1000, function(){
+       window.location.hash = hash;
+     });
+  });
+  //EO Navigaiton smooth
 });
 $('[data-spy="scroll"]').each(function () {
   var $spy = $(this).scrollspy('refresh')
-})
+});
 </script>
 
 </body>

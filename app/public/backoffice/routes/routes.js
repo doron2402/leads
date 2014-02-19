@@ -18,6 +18,12 @@ backOfficeApp.config(function($routeProvider) {
 		controller : 'usersController'
 	})
 
+	//Create a new campign
+	.when('/campigns/create', {
+		templateUrl : 'backoffice/templates/campigns/new.html',
+		controller : 'campignsController'
+	})
+
 	//User profile (the one that logged in)
 	.when('/me', {
 		templateUrl : 'backoffice/templates/me.html',
