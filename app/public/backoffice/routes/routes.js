@@ -24,6 +24,16 @@ backOfficeApp.config(function($routeProvider) {
 		controller : 'campignsController'
 	})
 
+	.when('/campigns/view/', {
+		templateUrl : 'backoffice/templates/campigns/view.html',
+		controller : 'campignsController'
+	})
+
+	.when('/campigns/view/:active', {
+		templateUrl : 'backoffice/templates/campigns/view.html',
+		controller : 'campignsController'
+	})
+
 	//User profile (the one that logged in)
 	.when('/me', {
 		templateUrl : 'backoffice/templates/me.html',

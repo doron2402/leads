@@ -11,16 +11,48 @@ backOfficeApp.controller('clientsController', function($scope, $http){
 	$scope.msg = 'clients';
 });
 
-backOfficeApp.controller('campignsController', function($scope, $http, $location) {
-  console.log($location);
+backOfficeApp.controller('campignsController', function($scope, $http, $location, $routeParams) {
+  
 	var actionPath = $location.$$absUrl.split('/').pop().toString().toLowerCase();
-  console.log(actionPath);
+    
+    console.log($routeParams);
+
+  $scope.getListOfCampigns = function(){
+
+    if ($routeParams.active == 'notactive')
+    {
+      $scope.not_active = true;
+      $http({method: 'GET',
+        url: 'http://localhost:3000/campigns/all/deactive'}).
+        success(function(data, status, headers, config) {
+          $scope.campigns = data;
+        }).
+        error(function(data, status, headers, config) {
+          //ToDo something when there's a problem
+        });
+    }
+    else
+    {
+      $scope.not_active = false;
+      $http({method: 'GET',
+      url: 'http://localhost:3000/campigns/all'}).
+        success(function(data, status, headers, config) {
+          console.log(data);
+          $scope.campigns = data;
+        }).
+        error(function(data, status, headers, config) {
+          //ToDo something when there's a problem
+        });    
+    }
+
+  }
+
   switch (actionPath){
     case 'create':
       console.log('create');
       break;
-    case 'read':
-      console.log('read');
+    case 'view':
+      $scope.getListOfCampigns();
       break;
     case 'edit':
       console.log('edit');
@@ -29,10 +61,14 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
       console.log('del');
       break;
     default:
-      console.log('all');
+      $scope.getListOfCampigns();
       break;
   }
   $scope.msg = 'campigns';
+
+
+
+
 });
 
 
@@ -42,7 +78,8 @@ backOfficeApp.controller('meController', function($scope, $http) {
 });
 
 backOfficeApp.controller('logoutController', function ($scope, $http, $location) {
-	console.log('logout user');
+
+  console.log('logout user');
 	$http({method: 'POST',
 	    url: 'http://localhost:3000/logout'}).
         success(function(data, status, headers, config) {

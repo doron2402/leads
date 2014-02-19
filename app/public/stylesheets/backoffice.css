@@ -1,6 +1,12 @@
+.gap-2-1{
+	margin:20px 10px;
+}
 .gap-7{
 	margin-top:70px;
 }
 .gap-8{
 	margin-top:80px;
+}
+span.label{
+	cursor: pointer;
 }
