@@ -24,10 +24,6 @@ server.route([
 		method: 'POST',
 		path: '/leads',
 		handler: routes.leads.setLeads
-	},{
-		method: 'GET',
-		path: '/',
-		handler: routes.traffic.setTraffic
 	}]
 );
 
