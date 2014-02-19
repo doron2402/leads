@@ -14,10 +14,11 @@ app.set('view engine', 'html');
 app.set('layout', 'layouts/default');
 app.locals({
     site: { 
-    	title: 'SpeadLeads',
+    	title: 'SpeadLeads1',
     	keywords: 'node.js, leads system', 
     	description: 'description', 
-    	contact: '515-515-5111' 
+    	contact: '515-515-5111',
+        logo: 'images/logo.png'
     },author: { 
     	name: 'Doron Segal', 
     	contact: 'doron2402@gmail.com', 
