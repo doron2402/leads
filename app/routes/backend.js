@@ -1,4 +1,5 @@
 var Mysql = require('../lib/mysql').MysqlKnex;
+	CampignModel = require('../models/campignModel').CampignModel;
 
 exports.dashboard = function (req, res) {
 	  res.render('backend/index', {layout: 'layouts/backoffice'});
@@ -45,3 +46,14 @@ exports.getAllDeactiveCampings = function(req, res){
 		return res.json({'error': 'error!!'});
 	}
 };
+
+exports.getEditCampign = function (req, res) {
+	if (!isNaN(req.params.id)){
+		return new CampignModel({'id': parseInt(req.params.id,10)}).fetch()
+  			.then(function(model) {
+  				return res.json(model.attributes);
+  			});
+	}
+	else
+		return res.json({'error': 'wrong args'});
+}

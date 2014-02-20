@@ -67,6 +67,8 @@ app.post('/logout', auth.checkAuth, routes.users.logoutUser);
 app.get('/backoffice', auth.checkAuth, routes.backend.dashboard);
 app.get('/campigns/all', auth.checkAuth, routes.backend.getAllCampigns);
 app.get('/campigns/all/deactive', auth.checkAuth, routes.backend.getAllDeactiveCampings);
+app.get('/campigns/edit/:id', auth.checkAuth, routes.backend.getEditCampign);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

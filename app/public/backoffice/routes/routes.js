@@ -33,6 +33,18 @@ backOfficeApp.config(function($routeProvider) {
 		templateUrl : 'backoffice/templates/campigns/view.html',
 		controller : 'campignsController'
 	})
+	
+	//Campign Edit with specific id
+	.when('/campigns/edit/:id', {
+		templateUrl : 'backoffice/templates/campigns/edit.html',
+		controller : 'campignsController'
+	})
+
+	//Campign Edit with no specific id
+	.when('/campigns/edit', {
+		templateUrl : 'backoffice/templates/campigns/edit.html',
+		controller : 'campignsController'
+	})
 
 	//User profile (the one that logged in)
 	.when('/me', {
