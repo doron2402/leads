@@ -34,6 +34,7 @@ app.set('partials', {
 	static_about: "static-page/about",
 	static_contact_form: "static-page/contact_form",
 	static_signin: "static-page/signin.html",
+    static_try: "static-page/try.html",
     nav_head_backoffice: "partials/nav_head_backoffice"
 
 });
