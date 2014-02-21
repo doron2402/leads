@@ -10,9 +10,9 @@
 				<th>#</th>
 				<th>Campign Id</th>
 				<th>Campign Name</th>
-				<th>Edit</th>
-				<th>Info</th>
-				<th>Deactivate</th>
+				<th></th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -22,7 +22,12 @@
 				<td>{{campign.name}}</td>
 				<td><a href="#/campigns/edit/{{campign.id}}"><span class="label label-success">Edit</span></a></td>
 				<td><span class="label label-info">Info</span></td>
-				<td><span class="label label-danger">Deactivate</span></td>
+				
+				<td ng-switch="campign.active">
+					<span ng-switch-when="0" ng-click="goTo('campigns/edit/'  + campign.id)" class="label label-success">Activate</span>
+					<span ng-switch-when="1" ng-click="goTo('campigns/edit/' + campign.id)" class="label label-danger">Deactivate</span>
+				</td>
+
 			</tr>
 		</tbody>
 	</table>

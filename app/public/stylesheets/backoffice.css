@@ -10,3 +10,8 @@
 span.label{
 	cursor: pointer;
 }
+span.error{
+	padding: 4px;
+	margin-left: auto;
+	font-size: 10pt
+}

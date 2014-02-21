@@ -11,9 +11,11 @@ globalFunc.getRoute = function(arr){
 
 };
 
+
 globalFunc.errorHandler = function(){
   alert('something went wrong');
 };
+
 
 backOfficeApp.controller('mainController', function($scope, $http){
 	$scope.msg = 'asdf';
@@ -28,8 +30,14 @@ backOfficeApp.controller('clientsController', function($scope, $http){
 	$scope.msg = 'clients';
 });
 
-backOfficeApp.controller('campignsController', function($scope, $http, $location, $routeParams) {
+backOfficeApp.controller('campignsController', function($scope, $http, $location, $routeParams, $modal) {
   
+  $scope.goTo = function(path){
+    console.log(path);
+    $location.path( path );
+  };
+
+
   var routesArgs = globalFunc.getRoute($location.$$path.split('/'));
 	var actionPath = globalFunc.getRoute($location.$$path.split('/')).action.toString().toLowerCase();
 
@@ -99,10 +107,8 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
   }
   $scope.msg = 'campigns';
 
-
-
-
 });
+
 
 
 backOfficeApp.controller('meController', function($scope, $http) {
