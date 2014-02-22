@@ -57,3 +57,21 @@ exports.getEditCampign = function (req, res) {
 	else
 		return res.json({'error': 'wrong args'});
 }
+
+
+/*
+	Users ROUTES
+*/
+exports.getAllUsers = function(req, res){
+	//First check the user type
+	if (req.session.userType < 4){
+		return Mysql('users').where('type','>=',parseInt(req.session.userType,10)).select().then(function(result, err){
+			if (err)
+				console.log(err);
+			
+			return res.json(result);
+		});
+	}else{
+		return res.json({'error': 'This user dont have permission to see other users'});
+	}
+}

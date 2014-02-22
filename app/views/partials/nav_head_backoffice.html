@@ -16,38 +16,50 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active">
+            <li ng-class="getClass('/home')">
             	<a href="#">
             		<i class="glyphicon glyphicon-home"></i> Home
             	</a>
-			</li>
-            <li>
-           	<a href="#/dashboard">
+			      </li>
+            <li ng-class="getClass('/dashboard')">
+           	  <a href="#/dashboard">
             		<i class="glyphicon glyphicon-dashboard"></i> Dashboard
             	</a>
             </li>
-            <li>
-            	<a href="#/campigns">
-            		campigns
-            	</a>
+            <li ng-class="getClass('/campigns/view')">
+              <a href="#/campigns/view">
+                <i class="glyphicon glyphicon-th-large"></i> Campigns
+              </a>
             </li>
-            <li><a href="#/campigns/view">campigns</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Action<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#/campigns/create">Create Campign</a></li>
-                <li><a href="#">Add User</a></li>
-                <li><a href="#">New Client</a></li>
+                <li ng-class="getClass('/users')">
+                  <a href="#/users">
+                    <i class="glyphicon glyphicon-star"></i>Users
+                  </a>
+                </li>
+                <li ng-class="getClass('/clients')">
+                  <a href="#/clients">
+                    <i class="glyphicon glyphicon-star"></i> Clients
+                  </a>
+                </li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Profile</li>
-                <li><a href="#"><i class="glyphicon glyphicon-user"></i> Me</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-edit"></i> Edit Profile</a></li>
+                <li ng-class="getClass('/me')">
+                  <a href="#"><i class="glyphicon glyphicon-user"></i> Me</a>
+                </li>
+                <li ng-class="getClass('/me/edit')">
+                  <a href="#"><i class="glyphicon glyphicon-edit"></i> Edit Profile</a>
+                </li>
               </ul>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
           	<li><a href="#/logout">Logout</a></li>
-          	<li><a href="#">Help</a></li>
+          	<li ng-class="{active: $scope.currentPage == 'help'}">
+              <a href="#">Help</a>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

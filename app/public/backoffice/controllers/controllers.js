@@ -11,27 +11,100 @@ globalFunc.getRoute = function(arr){
 
 };
 
-
 globalFunc.errorHandler = function(){
   alert('something went wrong');
 };
 
 
-backOfficeApp.controller('mainController', function($scope, $http){
-	$scope.msg = 'asdf';
+backOfficeApp.controller('mainController', function($scope, $http, $location){
+	$scope.currentPage = 'main';
+  $scope.msg = 'main controller';
+  
+  $scope.getClass = function(path) {
+    if ($location.path() == '/' && path == '/home'){
+      return "active";
+    }  
+
+    if ($location.path().substr(0, path.length) == path) {
+      return "active"
+    } else {
+      return ""
+    }
+  }
+
 });
 
-backOfficeApp.controller('usersController', function($scope,$http){
-   $scope.msg = 'users';
-   console.log('adfsasdf');
+backOfficeApp.controller('dashboardController', function ($scope, $http) {
+  $scope.currentPage = 'dashboard';
+  $scope.msg = 'Dashboard page';
+});
+
+backOfficeApp.controller('usersController', function($scope,$http, $location){
+  var args = globalFunc.getRoute($location.$$path.split('/'));
+  
+
+
+  $scope.getUserInfo = function (args) {
+    console.log('id: ' + args);
+    if (localDB.users.length > 0){
+        //get user id according args
+        for (var i = 0; i < localDB.length; i++) {
+          if (localDB.users[i].id == args){
+            $scope.user = localDB.users[i];   
+            console.log($scope.user);
+            return;
+          }
+        };
+        
+     }
+     else
+     {
+       $scope.user = { error: null};
+
+      } 
+  };
+
+  $scope.getAllUsers = function(){
+    
+    if (localDB.users.length > 0){
+        $scope.users = localDB.users;
+     }
+     else
+     {
+        $http({method: 'GET',
+          url: 'http://localhost:3000/users/all'}).
+          success(function(data, status, headers, config) {
+            console.log(data);
+            localDB.users = data;
+            $scope.users = data;
+          }).
+          error(function(data, status, headers, config) {
+          
+          });
+      } 
+  };
+   
+
+  switch(args.action){
+    case 'edit':
+      $scope.getUserInfo(args.arg);
+      break;
+    default:
+      $scope.getAllUsers();
+      break;
+  }
+   
 });
 
 backOfficeApp.controller('clientsController', function($scope, $http){
-	$scope.msg = 'clients';
+	$scope.currentPage = 'clients';
+  $scope.msg = 'clients';
 });
 
 backOfficeApp.controller('campignsController', function($scope, $http, $location, $routeParams, $modal) {
   
+  $scope.currentPage = 'campigns';
+
   $scope.goTo = function(path){
     console.log(path);
     $location.path( path );
@@ -87,7 +160,10 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
           }); 
       }
 
-  }
+  };
+
+
+
   switch (actionPath){
     case 'create':
       console.log('create');
@@ -105,8 +181,7 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
       $scope.getListOfCampigns();
       break;
   }
-  $scope.msg = 'campigns';
-
+  
 });
 
 

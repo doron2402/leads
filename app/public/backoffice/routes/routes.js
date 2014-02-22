@@ -6,18 +6,26 @@ backOfficeApp.config(function($routeProvider) {
 		controller : 'logoutController'
 	})
 
+	/*
+		Home Page
+	*/
 	// route for the home page
 	.when('/', {
 		templateUrl : 'backoffice/templates/home.html',
 		controller  : 'mainController'
 	})
-			
-	//Users CRUD
+
+	/* 
+		Dashboard
+	*/
 	.when('/dashboard', {
 		templateUrl : 'backoffice/templates/dashboard.html',
-		controller : 'usersController'
+		controller : 'dashboardController'
 	})
 
+	/*
+		Campigns
+	*/
 	//Create a new campign
 	.when('/campigns/create', {
 		templateUrl : 'backoffice/templates/campigns/new.html',
@@ -25,12 +33,12 @@ backOfficeApp.config(function($routeProvider) {
 	})
 
 	.when('/campigns/view/', {
-		templateUrl : 'backoffice/templates/campigns/view.html',
+		templateUrl : 'backoffice/templates/campigns/index.html',
 		controller : 'campignsController'
 	})
 
 	.when('/campigns/view/:active', {
-		templateUrl : 'backoffice/templates/campigns/view.html',
+		templateUrl : 'backoffice/templates/campigns/index.html',
 		controller : 'campignsController'
 	})
 	
@@ -46,27 +54,78 @@ backOfficeApp.config(function($routeProvider) {
 		controller : 'campignsController'
 	})
 
-	//User profile (the one that logged in)
-	.when('/me', {
-		templateUrl : 'backoffice/templates/me.html',
-		controller : 'meController'
-	})
-			
 	//All available campign for the logged user
 	.when('/campigns',{
 		templateUrl : 'backoffice/templates/campigns.html',
 		controller : 'campignsController'
 	})
 
-	.when('/campign/:id',{
-		templateUrl : 'backoffice/templates/campign.html',
-		controller : 'singleCampignController'
+	/* 
+		User profile
+	*/
+	.when('/me', {
+		templateUrl : 'backoffice/templates/profile/index.html',
+		controller : 'meController'
 	})
 
-	//Clients page -> Create / Update / Delete (hide) / View all clients
+	//User profile - edit
+	.when('/me/edit', {
+		templateUrl : 'backoffice/templates/profile/edit.html',
+		controller : 'meController'
+	})
+	//User profile - history
+	.when('/me/history', {
+		templateUrl : 'backoffice/templates/profile/history.html',
+		controller : 'meController'
+	})	
+
+	/*
+		Clients
+	*/
 	.when('/clients',{
-		templateUrl : 'backoffice/templates/clients.html',
+		templateUrl : 'backoffice/templates/clients/index.html',
 		controller : 'clientsController'
+	})
+
+	.when('/clients/new', {
+		templateUrl : 'backoffice/templates/clients/new.html',
+		controller : 'clientsController'	
+	})
+
+	.when('/clients/edit', {
+		templateUrl : 'backoffice/templates/clients/edit.html',
+		controller : 'clientsController'	
+	})
+
+	.when('/clients/delete', {
+		templateUrl : 'backoffice/templates/clients/edit.html',
+		controller : 'clientsController'	
+	})
+
+	/*
+		Users
+	*/
+	.when('/users', {
+		templateUrl : 'backoffice/templates/users/index.html',
+		controller : 'usersController'
+	})
+
+	.when('/users/new', {
+		templateUrl : 'backoffice/templates/users/new.html',
+		controller : 'usersController'
+	})
+
+	.when('/users/delete', {
+		templateUrl : 'backoffice/templates/users/delete.html',
+		controller : 'usersController'
+	})
+
+	.when('/users/edit/:id', {
+		templateUrl : 'backoffice/templates/users/edit.html',
+		controller : 'usersController'
 	});
+
+	
+
 
 });

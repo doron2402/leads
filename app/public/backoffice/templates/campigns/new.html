@@ -1,1 +1,66 @@
-<p>Create a new campign</p>
+<h3>Create Campign</h3>
+<div class="panel-heading"></div>
+<form name="editCampignForm"> 
+        <div class="form-group">
+            <label>Camping Id</label>
+            <input type="text" class="form-control" name="id" ng-model="campign.id" disabled>
+        </div>
+        <div class="form-group">
+        	<label>
+        		Campign Name
+        		<span class="error alert alert-danger" ng-show="editCampignForm.name.$error.required">Campign must have a name!</span>
+      			<span class="error alert alert-danger" ng-show="editCampignForm.name.$error.minlength">Name must be atleast 3 chars!</span>
+      			<span class="error alert alert-danger" ng-show="editCampignForm.name.$error.maxlength">Name too long</span>
+			</label>
+        	<input type="name" 
+        	class="form-control" 
+        	name="name"
+        	ng-model="campign.name" 
+        	ng-minlength=4
+        	ng-maxlength=60
+        	required>
+        </div>
+
+        <div class="form-group">
+        	<label>
+        		Campign Url
+        		<span class="error alert alert-danger" ng-show="editCampignForm.url.$error.required">Must have url</span>
+        	</label>
+        	<input type="text"
+        	class="form-control"
+        	name="url"
+        	ng-model="campign.url"
+        	required>
+        </div>
+
+        <div class="form-group">
+        	<!-- Start and end -->	
+        </div>
+
+        <div class="form-group">
+        	<!-- Client -->
+        </div>
+
+
+        <div class="form-group">
+        	<!-- campign -->
+        </div>
+
+        <div class="form-group">
+        	<label>
+        		Note
+        	</label>
+        	<textarea name="notes" ng-model="campign.notes" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+        	<label>
+        		Emails to send leads to
+        	</label>
+        	<textarea name="emailReportLeads" ng-model="campign.emailReportLeads" class="form-control"></textarea>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" ng-checked="campign.active" >Active</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>

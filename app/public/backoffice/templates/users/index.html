@@ -1,0 +1,42 @@
+<h1>Users</h1>
+	<input type="search" ng-model="q" placeholder="filter users..." />    
+	<table class="table">
+		<thead>
+			<tr>
+				<td></td>
+				<td>Id</td>
+				<td>Name</td>
+				<td>Email</td>
+				<td>Phone</td>
+				<td>Company Name</td>
+				<td>Company Site</td>
+				<td>Created At</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="user in users | filter:q">
+				<td>
+					<a href="#/users/edit/{{user.id}}" alt="{{user.name}}">Edit</a>
+				</td>
+				<td>{{user.id}}</td>
+				<td>{{user.name}}</td>
+				<td>{{user.email}}</td>
+				<td>
+					<span ng-show="user.phone != 'NULL'">{{user.phone}}</span>
+					<span ng-show="user.phone == 'NULL'">XXX-XXX-XXXX</span>
+				</td>
+				<td>
+					<span ng-show="user.company != 'NULL'">{{user.company}}</span>
+					<span ng-show="user.company == 'NULL'">No Value</span>
+				</td>
+				<td>
+					<span ng-show="user.companySite != 'NULL'">{{user.companySite}}</span>
+					<span ng-show="user.companySite == 'NULL'">No Value</span>
+				</td>
+				<td>
+					<span ng-show="user.createdAt != null">{{user.createdAt}}</span>
+					<span ng-show="user.createdAt == null">No Value</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
