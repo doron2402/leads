@@ -1,4 +1,4 @@
-exports.setLeads = function(request, reply){
+	exports.setLeads = function(request, reply){
 	var LeadModel = require('../models/leadsModel').LeadModel,
 		d = new Date(),
 		numOfDayOfWeek = d.getDay();

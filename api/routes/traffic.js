@@ -3,10 +3,10 @@ exports.setTraffic = function(request, reply){
 		d = new Date(),
 		numOfDayOfWeek = d.getDay();
 	
-	console.log(request.payload);
+	console.log(request.payload.campignId);
 
-	if (request.payload && (request.payload.campignId || request.payload.campign_id)){
-		
+	if (request.payload && (request.payload.campignId || request.payload.campign_id) ){
+
 		var self = request.payload;
 		if (request.payload.campign_id){
 			self.campignId = request.payload.campign_id;
