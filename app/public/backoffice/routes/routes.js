@@ -27,7 +27,7 @@ backOfficeApp.config(function($routeProvider) {
 		Campigns
 	*/
 	//Create a new campign
-	.when('/campigns/create', {
+	.when('/campigns/new', {
 		templateUrl : 'backoffice/templates/campigns/new.html',
 		controller : 'campignsController'
 	})

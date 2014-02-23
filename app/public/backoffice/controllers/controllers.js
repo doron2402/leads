@@ -25,7 +25,7 @@ backOfficeApp.controller('mainController', function($scope, $http, $location){
       return "active";
     }  
 
-    if ($location.path().substr(0, path.length) == path) {
+    if ($location.path().split('/')[1] == path.split('/')[1]) {
       return "active"
     } else {
       return ""
@@ -181,7 +181,8 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
       $scope.getListOfCampigns();
       break;
   }
-  
+ 
+
 });
 
 

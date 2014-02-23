@@ -2,10 +2,6 @@
 <div class="panel-heading"></div>
 <form name="editCampignForm"> 
         <div class="form-group">
-            <label>Camping Id</label>
-            <input type="text" class="form-control" name="id" ng-model="campign.id" disabled>
-        </div>
-        <div class="form-group">
         	<label>
         		Campign Name
         		<span class="error alert alert-danger" ng-show="editCampignForm.name.$error.required">Campign must have a name!</span>
@@ -33,6 +29,12 @@
         	required>
         </div>
 
+        <div class="form-group">
+            <label>
+                Start At
+            </label>
+           
+        </div>
         <div class="form-group">
         	<!-- Start and end -->	
         </div>
@@ -64,3 +66,8 @@
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
+<div class="container">
+    <div class="row">
+        
+    </div>
+</div>

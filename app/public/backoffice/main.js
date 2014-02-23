@@ -1,4 +1,4 @@
-var backOfficeApp = angular.module('backOfficeApp', ['ngRoute','ngCookies','ui.bootstrap']);
+var backOfficeApp = angular.module('backOfficeApp', ['ui.bootstrap','ngRoute','ngCookies']);
 
 var localDB = {
 	userInfo: {
