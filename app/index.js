@@ -13,21 +13,21 @@ app.engine('html', require('hogan-express'));
 app.set('view engine', 'html');
 app.set('layout', 'layouts/default');
 app.locals({
-    site: { 
+    site: {
     	title: 'SpeadLeads1',
-    	keywords: 'node.js, leads system', 
-    	description: 'description', 
+    	keywords: 'node.js, leads system',
+    	description: 'description',
     	contact: '515-515-5111',
         logo: 'images/logo.png'
-    },author: { 
-    	name: 'Doron Segal', 
-    	contact: 'doron2402@gmail.com', 
-    	site: 'http://segaldoron.com' 
+    },author: {
+    	name: 'Doron Segal',
+    	contact: 'doron2402@gmail.com',
+    	site: 'http://segaldoron.com'
     }
 });
-app.set('partials', { 
-	header: "partials/header", 
-	topnav:"partials/topnav", 
+app.set('partials', {
+	header: "partials/header",
+	topnav:"partials/topnav",
 	header_backoffice: "partials/header_backoffice",
 	footer_backoffice: "partials/footer_backoffice",
 	static_carousel: "static-page/carousel",
@@ -69,6 +69,7 @@ app.get('/backoffice', auth.checkAuth, routes.backend.dashboard);
     app.get('/campigns/all', auth.checkAuth, routes.backend.getAllCampigns);
     app.get('/campigns/all/deactive', auth.checkAuth, routes.backend.getAllDeactiveCampings);
     app.get('/campigns/edit/:id', auth.checkAuth, routes.backend.getEditCampign);
+    app.post('/campings/save', auth.checkAuth, routes.backend.saveCampign);
 
     //Users
     app.get('/users/all', auth.checkAuth, routes.backend.getAllUsers);

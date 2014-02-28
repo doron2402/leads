@@ -10,13 +10,13 @@ exports.dashboard = function (req, res) {
 	return an array of activate campigns
 */
 exports.getAllCampigns = function(req, res){
-	
+
 	if (req.session.userType < 4){
 		//show all campign
 		return Mysql('campigns').where('active',1).select().then(function(result, err){
 			if (err)
 				console.log(err);
-			
+
 			return res.json(result);
 		});
 	}
@@ -24,7 +24,7 @@ exports.getAllCampigns = function(req, res){
 		//Show only campign user have permission to
 		console.log('else...');
 		return res.json({'error': 'error!!'});
-	}	
+	}
 };
 
 /*
@@ -36,7 +36,7 @@ exports.getAllDeactiveCampings = function(req, res){
 		return Mysql('campigns').where('active',0).select().then(function(result, err){
 			if (err)
 				console.log(err);
-			
+
 			return res.json(result);
 		});
 	}
@@ -68,10 +68,37 @@ exports.getAllUsers = function(req, res){
 		return Mysql('users').where('type','>=',parseInt(req.session.userType,10)).select().then(function(result, err){
 			if (err)
 				console.log(err);
-			
+
 			return res.json(result);
 		});
 	}else{
 		return res.json({'error': 'This user dont have permission to see other users'});
 	}
 }
+
+exports.saveCampign = function(req, res){
+	console.log(req.body);
+	if (req.session.userType < 4){
+		if (!isNaN(req.body.id))
+		{
+			new CampignModel({id: parseInt(req.body.id,10)})
+  			.save({
+  				name: req.body.name,
+  				url: req.body.url,
+  				notes: req.body.notes,
+  				emailReportLeads: req.body.emailReportLeads,
+  				active: req.body.active
+  			}, {patch: true})
+  			.then(function(model) {
+  				console.log(model);
+
+   				return res.json({"data": model, "code": "OK"});
+  			});
+		}else{
+			return res.json({'error': 'Missing or Wrong Params'});
+		}
+	}else{
+		return res.json({'error': 'This user dont have permission to see other users'});
+	}
+}
+

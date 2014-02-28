@@ -19,11 +19,11 @@ globalFunc.errorHandler = function(){
 backOfficeApp.controller('mainController', function($scope, $http, $location){
 	$scope.currentPage = 'main';
   $scope.msg = 'main controller';
-  
+
   $scope.getClass = function(path) {
     if ($location.path() == '/' && path == '/home'){
       return "active";
-    }  
+    }
 
     if ($location.path().split('/')[1] == path.split('/')[1]) {
       return "active"
@@ -41,7 +41,7 @@ backOfficeApp.controller('dashboardController', function ($scope, $http) {
 
 backOfficeApp.controller('usersController', function($scope,$http, $location){
   var args = globalFunc.getRoute($location.$$path.split('/'));
-  
+
 
 
   $scope.getUserInfo = function (args) {
@@ -50,22 +50,22 @@ backOfficeApp.controller('usersController', function($scope,$http, $location){
         //get user id according args
         for (var i = 0; i < localDB.length; i++) {
           if (localDB.users[i].id == args){
-            $scope.user = localDB.users[i];   
+            $scope.user = localDB.users[i];
             console.log($scope.user);
             return;
           }
         };
-        
+
      }
      else
      {
        $scope.user = { error: null};
 
-      } 
+      }
   };
 
   $scope.getAllUsers = function(){
-    
+
     if (localDB.users.length > 0){
         $scope.users = localDB.users;
      }
@@ -79,11 +79,11 @@ backOfficeApp.controller('usersController', function($scope,$http, $location){
             $scope.users = data;
           }).
           error(function(data, status, headers, config) {
-          
+
           });
-      } 
+      }
   };
-   
+
 
   switch(args.action){
     case 'edit':
@@ -93,7 +93,7 @@ backOfficeApp.controller('usersController', function($scope,$http, $location){
       $scope.getAllUsers();
       break;
   }
-   
+
 });
 
 backOfficeApp.controller('clientsController', function($scope, $http){
@@ -102,7 +102,7 @@ backOfficeApp.controller('clientsController', function($scope, $http){
 });
 
 backOfficeApp.controller('campignsController', function($scope, $http, $location, $routeParams, $modal) {
-  
+
   $scope.currentPage = 'campigns';
 
   $scope.goTo = function(path){
@@ -140,7 +140,7 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
         error(function(data, status, headers, config) {
           //ToDo something when there's a problem
           globalFunc.errorHandler();
-        });    
+        });
     }
 
   }
@@ -157,11 +157,36 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
           }).
           error(function(data, status, headers, config) {
             //ToDo something when there's a problem
-          }); 
+          });
       }
 
   };
 
+  $scope.submitCampign = function(){
+
+    if (!isNaN(this.campign.id) && this.campign.name != null){
+      $http({
+        method: 'POST',
+        data: this.campign,
+        url: 'http://localhost:3000/campings/save'})
+      .success(function(data, status, headers, config){
+          console.log(data);
+          if (data.error)
+          {
+            alert(data.error);
+          }
+          else if (data.code == 'OK'){
+            alert('Save!');
+          }
+          else{
+            alert('unknown');
+          }
+        }).error(function(data, status){
+          console.log('something went wrong');
+          console.log(data);
+        });
+    }
+  };
 
 
   switch (actionPath){
@@ -181,7 +206,7 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
       $scope.getListOfCampigns();
       break;
   }
- 
+
 
 });
 
@@ -205,5 +230,5 @@ backOfficeApp.controller('logoutController', function ($scope, $http, $location)
           	console.log(data);
           	console.log('error');
           	$location.path('/backoffice#/');
-      	}); 
+      	});
 });

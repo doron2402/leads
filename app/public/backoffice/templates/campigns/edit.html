@@ -15,12 +15,12 @@
                 <i class="glyphicon glyphicon-pencil"></i> Edit
             </li>
         </ol>
-    </div>  
+    </div>
 </div>
 <h3>Edit Campign</h3>
  <div class="panel-heading"></div>
 
-<form name="editCampignForm"> 
+<form name="editCampignForm">
         <div class="form-group">
             <label>Camping Id</label>
             <input type="text" class="form-control" name="id" ng-model="campign.id" disabled>
@@ -32,10 +32,10 @@
       			<span class="error alert alert-danger" ng-show="editCampignForm.name.$error.minlength">Name must be atleast 3 chars!</span>
       			<span class="error alert alert-danger" ng-show="editCampignForm.name.$error.maxlength">Name too long</span>
 			</label>
-        	<input type="name" 
-        	class="form-control" 
+        	<input type="name"
+        	class="form-control"
         	name="name"
-        	ng-model="campign.name" 
+        	ng-model="campign.name"
         	ng-minlength=4
         	ng-maxlength=60
         	required>
@@ -54,7 +54,7 @@
         </div>
 
         <div class="form-group">
-        	<!-- Start and end -->	
+        	<!-- Start and end -->
         </div>
 
         <div class="form-group">
@@ -82,5 +82,5 @@
         <div class="checkbox">
             <label><input type="checkbox" ng-checked="campign.active" >Active</label>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary" ng-click="submitCampign()">Save</button>
     </form>
