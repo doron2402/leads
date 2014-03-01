@@ -102,3 +102,15 @@ exports.saveCampign = function(req, res){
 	}
 }
 
+
+exports.getCampign = function(req, res){
+	//Return a single data campign
+	if (req.session.userType < 4 && !isNaN(req.params.id)){
+	return new CampignModel({'id': parseInt(req.params.id,10)}).fetch()
+  			.then(function(model) {
+  				return res.json(model.attributes);
+  			});
+	}
+	else
+		return res.json({'error': 'Wrong Permission or Campign ID'});
+}

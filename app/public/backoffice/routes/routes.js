@@ -1,6 +1,6 @@
 backOfficeApp.config(function($routeProvider) {
 	$routeProvider
-	
+
 	.when('/logout', {
 		templateUrl : 'backoffice/templates/home.html',
 		controller : 'logoutController'
@@ -15,7 +15,7 @@ backOfficeApp.config(function($routeProvider) {
 		controller  : 'mainController'
 	})
 
-	/* 
+	/*
 		Dashboard
 	*/
 	.when('/dashboard', {
@@ -32,16 +32,26 @@ backOfficeApp.config(function($routeProvider) {
 		controller : 'campignsController'
 	})
 
-	.when('/campigns/view/', {
+	.when('/campigns/view/all', {
 		templateUrl : 'backoffice/templates/campigns/index.html',
 		controller : 'campignsController'
+	})
+
+	.when('/campigns/view', {
+		templateUrl : 'backoffice/templates/campigns/index.html',
+		controller : 'campignsController'
+	})
+
+	.when('/campigns/view/:id', {
+		templateUrl : 'backoffice/templates/campigns/single.html',
+		controller  : 'campignsController'
 	})
 
 	.when('/campigns/view/:active', {
 		templateUrl : 'backoffice/templates/campigns/index.html',
 		controller : 'campignsController'
 	})
-	
+
 	//Campign Edit with specific id
 	.when('/campigns/edit/:id', {
 		templateUrl : 'backoffice/templates/campigns/edit.html',
@@ -60,7 +70,7 @@ backOfficeApp.config(function($routeProvider) {
 		controller : 'campignsController'
 	})
 
-	/* 
+	/*
 		User profile
 	*/
 	.when('/me', {
@@ -77,7 +87,7 @@ backOfficeApp.config(function($routeProvider) {
 	.when('/me/history', {
 		templateUrl : 'backoffice/templates/profile/history.html',
 		controller : 'meController'
-	})	
+	})
 
 	/*
 		Clients
@@ -89,17 +99,17 @@ backOfficeApp.config(function($routeProvider) {
 
 	.when('/clients/new', {
 		templateUrl : 'backoffice/templates/clients/new.html',
-		controller : 'clientsController'	
+		controller : 'clientsController'
 	})
 
 	.when('/clients/edit', {
 		templateUrl : 'backoffice/templates/clients/edit.html',
-		controller : 'clientsController'	
+		controller : 'clientsController'
 	})
 
 	.when('/clients/delete', {
 		templateUrl : 'backoffice/templates/clients/edit.html',
-		controller : 'clientsController'	
+		controller : 'clientsController'
 	})
 
 	/*
@@ -125,7 +135,7 @@ backOfficeApp.config(function($routeProvider) {
 		controller : 'usersController'
 	});
 
-	
+
 
 
 });

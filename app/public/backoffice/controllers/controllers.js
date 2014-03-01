@@ -15,6 +15,18 @@ globalFunc.errorHandler = function(){
   alert('something went wrong');
 };
 
+globalFunc.setCurrentCampign = function(campign){
+  this.currentCampign = campign;
+};
+
+globalFunc.getCurrentCampign = function(){
+  if (this.currentCampign)
+    return this.currentCampign;
+  else
+    return {err: 'cant find campign'};
+}
+
+
 
 backOfficeApp.controller('mainController', function($scope, $http, $location){
 	$scope.currentPage = 'main';
@@ -176,7 +188,10 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
             alert(data.error);
           }
           else if (data.code == 'OK'){
-            alert('Save!');
+            //Redirect to view single campign
+            console.log(data);
+            globalFunc.setCurrentCampign(data.data);
+            $scope.goTo('/campigns/view/' + data.data.id);
           }
           else{
             alert('unknown');
@@ -188,13 +203,36 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
     }
   };
 
+  $scope.viewSingleCampign = function(){
+    //Check if campigns already in data
+    $scope.currentCampign = globalFunc.getCurrentCampign();
+    if ($scope.currentCampign.err && $routeParams.id)
+    {
+      //Get campign from server
+      console.log($routeParams);
+      $http({method: 'GET',
+          url: 'http://localhost:3000/campings/get/' + parseInt($routeParams.id,10)}).
+          success(function(data, status, headers, config) {
+            globalFunc.setCurrentCampign(data);
+            $scope.currentCampign = data;
+            console.log(data);
+          }).
+          error(function(data, status, headers, config) {
+            //ToDo something when there's a problem
+          });
+    }
+
+  };
 
   switch (actionPath){
     case 'create':
       console.log('create');
       break;
     case 'view':
-      $scope.getListOfCampigns();
+      if (routesArgs.arg == 'all' || !routesArgs.arg)
+        $scope.getListOfCampigns();
+      else
+        $scope.viewSingleCampign();
       break;
     case 'edit':
       $scope.getCampignEdit();
