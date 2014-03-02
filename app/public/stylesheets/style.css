@@ -6,3 +6,10 @@ body {
 a {
   color: #00B7FF;
 }
+.error-signin{
+	float: left;
+	position: absolute;
+	margin-top: -30px;
+	font-size: 16px;
+	color: red;
+}

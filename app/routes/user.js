@@ -14,8 +14,8 @@ exports.loginUser = function(req, res){
 			var tmp_pass = password.digest('hex');
 
 		return new Model.UserModel({'username': req.body.username}).fetch().then(function(model){
-			
-			if (model.get('password') == tmp_pass)
+
+			if (typeof model === 'object' && model != null && model.get('password') == tmp_pass)
 			{
 
 				var session_id = crypto.createHash('sha1');
@@ -26,15 +26,15 @@ exports.loginUser = function(req, res){
 				req.session.userType = model.get('type');
 
 				return res.json({redirect: '/backoffice',dataReturn: 'success' });
-			}	
+			}
 			else
-				return res.json({redirect: '#',dataReturn: 'fail' });
+				return res.json({redirect: '#',err: 'fail' });
 
-			
+
 		});
-		
+
 	}else
-		return res.json({Error: 'Bad username or password'});
+		return res.json({err: 'Bad username or password'});
 };
 
 exports.logoutUser = function(req, res, next){

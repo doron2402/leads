@@ -8,10 +8,10 @@
       <div class="modal-body">
         <form role="form">
         	<div class="input-group col-md-8">
-  				<input type="text" name="username" class="form-control" placeholder="Username">		
+  				<input type="text" name="username" class="form-control" placeholder="Username">
   			</div>
   			<br>
-  			<div class="input-group col-md-8">	
+  			<div class="input-group col-md-8">
   				<input type="password" name="password" class="form-control" placeholder="Password">
 			</div>
         </form>
@@ -19,6 +19,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" id="login-system-btn-id" class="btn btn-primary">Login</button>
+        <div class="error-signin"></div>
       </div>
     </div>
   </div>
@@ -28,33 +29,44 @@ $(document).ready(function(){
 	$('#login-system-btn-id').click(function(e){
 
 		e.preventDefault();
-		
+
 		var FormData = {};
 		FormData.username = $("input[name='username']").val();
 		FormData.password = $("input[name='password']").val();
-		
-		
+
+		var showErrorSignup = function(){
+			$('.error-signin').html('<p>Wrong Username or Password</p>');
+		};
+
+
 		if (FormData.username.length > 4 && FormData.password.length >= 6){
-			console.log('yaa');
+
 			var request = $.ajax({
 			  url: "/login",
 			  type: "POST",
 			  data: FormData
 			});
-			 
-			request.done(function( ret ) {
 
-			  	$('#signin').modal('hide');
-			  	window.location.replace(ret.redirect);
+			request.done(function( ret ) {
+				console.log(ret);
+				if (ret.err)
+					return showErrorSignup();
+				else{
+			  		$('#signin').modal('hide');
+			  		window.location.replace(ret.redirect);
+				}
 
 			});
-			 
+
 			request.fail(function( jqXHR, textStatus ) {
 			  alert( "Request failed: " + textStatus );
-			});	
+			});
 
 
-		}//eo if
+		}else{
+			//wrong pattern
+			showErrorSignup();
+		}
 
 	});
 });
