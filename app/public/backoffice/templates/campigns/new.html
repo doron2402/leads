@@ -1,6 +1,13 @@
 <h3>Create Campign</h3>
 <div class="panel-heading"></div>
-<form name="editCampignForm"> 
+<form name="editCampignForm">
+    <div class="form-group">
+        <label>CampignId:</label>
+        <input type="text"
+        ng-model="tmpCampignId"
+        name="id"
+        disabled="disabled">
+    </div>
         <div class="form-group">
         	<label>
         		Campign Name
@@ -8,10 +15,10 @@
       			<span class="error alert alert-danger" ng-show="editCampignForm.name.$error.minlength">Name must be atleast 3 chars!</span>
       			<span class="error alert alert-danger" ng-show="editCampignForm.name.$error.maxlength">Name too long</span>
 			</label>
-        	<input type="name" 
-        	class="form-control" 
+        	<input type="name"
+        	class="form-control"
         	name="name"
-        	ng-model="campign.name" 
+        	ng-model="campign.name"
         	ng-minlength=4
         	ng-maxlength=60
         	required>
@@ -33,15 +40,25 @@
             <label>
                 Start At
             </label>
-           
+
         </div>
         <div class="form-group">
-        	<!-- Start and end -->	
+        	<!-- Start and end -->
+        </div>
+        <div ng-controller="clientsController" ng-init="getListOfClients()">
+            <div class="form-group">
+                <!-- Client -->
+                <label>Client</label>
+                <select
+            name="campignClient"
+            ng-model="campign.clientId"
+            required>
+            <option value="">-- choose a client --</option>
+            <option ng-repeat="client in clients" value="{{client.id}}">{{client.clientName}}</option>
+                  </select>
+            </div>
         </div>
 
-        <div class="form-group">
-        	<!-- Client -->
-        </div>
 
 
         <div class="form-group">
@@ -64,10 +81,10 @@
         <div class="checkbox">
             <label><input type="checkbox" ng-checked="campign.active" >Active</label>
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" ng-click="submitNewCampign()" class="btn btn-primary">Create</button>
     </form>
 <div class="container">
     <div class="row">
-        
+
     </div>
 </div>

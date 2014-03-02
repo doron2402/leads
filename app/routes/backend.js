@@ -114,3 +114,30 @@ exports.getCampign = function(req, res){
 	else
 		return res.json({'error': 'Wrong Permission or Campign ID'});
 }
+
+exports.createCampign = function (req, res) {
+	if (req.session.userType < 4 && !isNaN(req.body.id) ){
+		console.log(req.body);
+		return new CampignModel().save(req.body).then(function(model){
+			console.log(model);
+			return res.json({data: model, ret: "OK"});
+		});
+		return res.json({err: "Something went wrong."});
+	}else
+		return res.json({err: "Check user permission"});
+}
+
+exports.getAllClients = function(req, res){
+	if (req.session.userType < 4)
+	{
+		return Mysql('clients').select().then(
+				function(result, err){
+			if (err)
+				console.log(err);
+
+			return res.json(result);
+		});
+	}
+	else
+		return res.json({err: "Check user permission"});
+}

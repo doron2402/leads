@@ -1,4 +1,5 @@
 var globalFunc = {};
+
 globalFunc.getRoute = function(arr){
   console.log(arr);
   var args = {
@@ -26,7 +27,10 @@ globalFunc.getCurrentCampign = function(){
     return {err: 'cant find campign'};
 }
 
-
+globalFunc.generateCampignId = function () {
+  var rand_num = Math.round( Math.random() * 1000000000 );
+  return rand_num;
+}
 
 backOfficeApp.controller('mainController', function($scope, $http, $location){
 	$scope.currentPage = 'main';
@@ -53,8 +57,6 @@ backOfficeApp.controller('dashboardController', function ($scope, $http) {
 
 backOfficeApp.controller('usersController', function($scope,$http, $location){
   var args = globalFunc.getRoute($location.$$path.split('/'));
-
-
 
   $scope.getUserInfo = function (args) {
     console.log('id: ' + args);
@@ -108,11 +110,38 @@ backOfficeApp.controller('usersController', function($scope,$http, $location){
 
 });
 
+
+/*
+    Clients Controller
+
+    - getListOfClients -> return an object with array of list of all clients
+*/
 backOfficeApp.controller('clientsController', function($scope, $http){
-	$scope.currentPage = 'clients';
-  $scope.msg = 'clients';
+
+  $scope.getListOfClients = function(){
+    $http({method: 'GET',
+      url: 'http://localhost:3000/clients/all'}).
+      success(function(data, status, headers, config) {
+          console.log(data);
+          localDB.clients = data;
+          $scope.clients = data;
+        }).
+        error(function(data, status, headers, config) {
+          //ToDo something when there's a problem
+      });
+  };
+
 });
 
+
+/*
+    Campigns Controller
+    ** get the action and args, action: new, edit,..
+    - Get a list of all campigns : $scope.getListOfCampigns
+    - Edit campign: a. first getCampignEdit() : get the data for the specific campign
+                    b. submitCampign() : save changes
+
+*/
 backOfficeApp.controller('campignsController', function($scope, $http, $location, $routeParams, $modal) {
 
   $scope.currentPage = 'campigns';
@@ -203,13 +232,39 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
     }
   };
 
+  $scope.submitNewCampign = function(){
+    console.log(this);
+    var campign_data = this.campign;
+    campign_data.id = parseInt(this.tmpCampignId,10);
+    console.log(campign_data);
+    $http({
+        method: 'POST',
+        data: campign_data,
+        url: 'http://localhost:3000/campigns/create'}).
+        success(function(data, status, headers, config) {
+          if (data.err){
+            //display error.
+
+          }else{
+
+            globalFunc.setCurrentCampign(data);
+            $scope.currentCampign = data;
+            //Redirect to single campign page
+          }
+
+
+        }).
+        error(function(data, status, headers, config) {
+          //ToDo something when there's a problem
+        });
+  };
+
   $scope.viewSingleCampign = function(){
     //Check if campigns already in data
     $scope.currentCampign = globalFunc.getCurrentCampign();
     if ($scope.currentCampign.err && $routeParams.id)
     {
       //Get campign from server
-      console.log($routeParams);
       $http({method: 'GET',
           url: 'http://localhost:3000/campings/get/' + parseInt($routeParams.id,10)}).
           success(function(data, status, headers, config) {
@@ -239,6 +294,9 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
       break;
     case 'delete':
       console.log('del');
+      break;
+    case 'new':
+      $scope.tmpCampignId = globalFunc.generateCampignId();
       break;
     default:
       $scope.getListOfCampigns();

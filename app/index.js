@@ -7,7 +7,7 @@ var express = require('express'),
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.VCAP_APP_PORT || 3000); //App Fog port configuration
 app.set('views', path.join(__dirname, 'views'));
 app.engine('html', require('hogan-express'));
 app.set('view engine', 'html');
@@ -71,10 +71,12 @@ app.get('/backoffice', auth.checkAuth, routes.backend.dashboard);
     app.get('/campigns/all/deactive', auth.checkAuth, routes.backend.getAllDeactiveCampings);
     app.get('/campigns/edit/:id', auth.checkAuth, routes.backend.getEditCampign);
     app.post('/campings/save', auth.checkAuth, routes.backend.saveCampign);
-
+    app.post('/campigns/create', auth.checkAuth, routes.backend.createCampign);
     //Users
     app.get('/users/all', auth.checkAuth, routes.backend.getAllUsers);
 
+    //Clients
+    app.get('/clients/all', auth.checkAuth, routes.backend.getAllClients);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

@@ -11,3 +11,5 @@ var localDB = {
 	users: [],
 	clients: []
 };
+
+var i18n = {};

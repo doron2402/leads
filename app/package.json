@@ -16,7 +16,7 @@
     "crypto": "0.0.3"
   },
   "description": "node.js app mysql express",
-  "main": "app.js",
+  "main": "index.js",
   "author": "Doron Segal",
   "license": "ISC"
 }

@@ -1,6 +1,5 @@
 backOfficeApp.config(function($routeProvider) {
 	$routeProvider
-
 	.when('/logout', {
 		templateUrl : 'backoffice/templates/home.html',
 		controller : 'logoutController'
