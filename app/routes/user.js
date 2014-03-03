@@ -1,6 +1,5 @@
 //login
 exports.loginUser = function(req, res){
-
 	console.log(req.body);
 
 	if (req.body && req.body.username && req.body.password && req.body.password.length > 4){
