@@ -2,15 +2,16 @@
 <html ng-app="backOfficeApp">
 <head>
   <title>{{site.title}}</title>
+  {{> app_configuration}}
   {{> header_backoffice}}
 </head>
 <body ng-controller="mainController">
 	{{> nav_head_backoffice}}
-	
+
     <div class="container gap-8">
     	<div ng-view></div>
     </div> <!-- /container -->
-     
+
       {{{ yield }}}<!-- Render by Backend -->
 
     {{> footer_backoffice}}

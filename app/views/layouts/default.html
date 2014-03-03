@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>{{site.title}}</title>
+  {{> app_configuration}}
   {{> header}}
 </head>
 <body data-spy="scroll" data-target=".navbar-example">
@@ -53,16 +54,16 @@
       <div id="page-contact" class="scrollspy-section">
       		{{> static_contact_form}}
       </div>
-      
+
       {{> static_signin}}
 
-     
+
       {{{ yield }}}
 <script>
 $(document).ready(function(){
 	$('body').scrollspy({ target: '.navbar-example' });
   //Adding smooth navigation
-  $("nav#navbar-example2 .container-fluid .navbar-example ul.navbar-example li a[href^='#']").on('click', function(e){ 
+  $("nav#navbar-example2 .container-fluid .navbar-example ul.navbar-example li a[href^='#']").on('click', function(e){
    e.preventDefault();
    var hash = this.hash;
    $('html, body').animate({

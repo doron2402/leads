@@ -1,3 +1,9 @@
+var Config = {
+	mode: 'dev',
+	host: 'localhost',
+	port: 80
+};
+
 var backOfficeApp = angular.module('backOfficeApp', ['ui.bootstrap','ngRoute','ngCookies']);
 
 var localDB = {
@@ -13,3 +19,4 @@ var localDB = {
 };
 
 var i18n = {};
+

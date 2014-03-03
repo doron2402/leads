@@ -14,18 +14,21 @@ app.set('view engine', 'html');
 app.set('layout', 'layouts/default');
 app.locals({
     site: {
-    	title: 'SpeadLeads1',
+    	title: 'SpeadLeads',
     	keywords: 'node.js, leads system',
     	description: 'description',
     	contact: '515-515-5111',
-        logo: 'images/logo.png'
+        logo: 'images/logo.png',
+        host: process.env.APP_HOST || 'localhost:3000',
+        language: process.env.APP_LANGUAGE || 'EN_US'
     },author: {
     	name: 'Doron Segal',
-    	contact: 'doron2402@gmail.com',
+    	contact: 'doron@segaldoron.com',
     	site: 'http://segaldoron.com'
     }
 });
 app.set('partials', {
+    app_configuration: "partials/app_configuration.html",
 	header: "partials/header",
 	topnav:"partials/topnav",
 	header_backoffice: "partials/header_backoffice",
