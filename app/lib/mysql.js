@@ -1,8 +1,7 @@
 if (process.env.VCAP_SERVICES){
 
-	console.log(process.env.VCAP_SERVICES);
-	var VCAP_SERVICES = process.env.VCAP_SERVICES["mysql-5.1"],
-		mysql_configuration = VCAP_SERVICES[0]["credentials"],
+	var env = JSON.parse(process.env.VCAP_SERVICES),
+		mysql_configuration = env['mysql-5.1'][0]['credentials'],
 		Knex = require('knex'),
 		knex = Knex.initialize({
 	  client: 'mysql',
