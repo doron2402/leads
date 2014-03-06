@@ -7,6 +7,12 @@ if (process.env.VCAP_SERVICES){
 	console.log(mysql_configuration);
 }
 
+
+
+console.log('MYSQL::');
+console.log(process.env);
+
+
 var Knex = require('knex'),
 	knex = Knex.initialize({
 	  client: 'mysql',
@@ -20,4 +26,8 @@ var Knex = require('knex'),
 	  }
 });
 
+knex.raw('show tables').then(function(err, result){
+	console.log(err);
+	console.log(result);
+});
 exports.MysqlKnex = knex;

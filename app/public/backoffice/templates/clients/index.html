@@ -1,1 +1,43 @@
 <h1>Clients</h1>
+
+	<input type="search" ng-model="q" placeholder="filter users..." />
+	<table class="table">
+		<thead>
+			<tr>
+				<td></td>
+				<td>Id</td>
+				<td>Name</td>
+				<td>Email</td>
+				<td>Phone</td>
+				<td>Company Name</td>
+				<td>Company Site</td>
+				<td>Created At</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="client in clients | filter:q">
+				<td>
+					<a href="#/client/edit/{{client.id}}" alt="{{client.name}}">Edit</a>
+				</td>
+				<td>{{client.id}}</td>
+				<td>{{client.name}}</td>
+				<td>{{client.email}}</td>
+				<td>
+					<span ng-show="client.phone != 'NULL'">{{client.phone}}</span>
+					<span ng-show="client.phone == 'NULL'">XXX-XXX-XXXX</span>
+				</td>
+				<td>
+					<span ng-show="client.company != 'NULL'">{{client.company}}</span>
+					<span ng-show="client.company == 'NULL'">No Value</span>
+				</td>
+				<td>
+					<span ng-show="client.companySite != 'NULL'">{{client.companySite}}</span>
+					<span ng-show="client.companySite == 'NULL'">No Value</span>
+				</td>
+				<td>
+					<span ng-show="client.createdAt != null">{{client.createdAt}}</span>
+					<span ng-show="client.createdAt == null">No Value</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>

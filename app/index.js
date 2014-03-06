@@ -50,9 +50,13 @@ app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 
 app.all('/*', function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  //res.header("Access-Control-Allow-Origin", "*");
+  //res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('X-Powered-By', 'SegalDoron');
+  res.header("Access-Control-Allow-Headers", "*");
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+  res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
   next();
 });
 
