@@ -86,7 +86,7 @@ backOfficeApp.controller('usersController', function($scope,$http, $location){
      else
      {
         $http({method: 'GET',
-          url: 'http://localhost:3000/users/all'}).
+          url: 'http://' + window.A.Configuration.host + '/users/all'}).
           success(function(data, status, headers, config) {
             console.log(data);
             localDB.users = data;
@@ -120,7 +120,7 @@ backOfficeApp.controller('clientsController', function($scope, $http){
 
   $scope.getListOfClients = function(){
     $http({method: 'GET',
-      url: 'http://localhost:3000/clients/all'}).
+      url: 'http://' + window.A.Configuration.host + '/clients/all'}).
       success(function(data, status, headers, config) {
           console.log(data);
           localDB.clients = data;
@@ -161,7 +161,7 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
     {
       $scope.not_active = true;
       $http({method: 'GET',
-        url: 'http://localhost:3000/campigns/all/deactive'}).
+        url: 'http://' + window.A.Configuration.host + '/campigns/all/deactive'}).
         success(function(data, status, headers, config) {
           $scope.campigns = data;
         }).
@@ -173,7 +173,7 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
     {
       $scope.not_active = false;
       $http({method: 'GET',
-      url: 'http://localhost:3000/campigns/all'}).
+      url: 'http://' + window.A.Configuration.host + '/campigns/all'}).
         success(function(data, status, headers, config) {
           console.log(data);
           $scope.campigns = data;
@@ -192,7 +192,7 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
     if (!isNaN(parseInt(routesArgs.arg,10))) {
 
       $http({method: 'GET',
-          url: 'http://localhost:3000/campigns/edit/' + parseInt(routesArgs.arg,10)}).
+          url: 'http://' + window.A.Configuration.host + '/campigns/edit/' + parseInt(routesArgs.arg,10)}).
           success(function(data, status, headers, config) {
             $scope.campign = data;
           }).
@@ -209,7 +209,7 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
       $http({
         method: 'POST',
         data: this.campign,
-        url: 'http://localhost:3000/campings/save'})
+        url: 'http://' + window.A.Configuration.host + '/campings/save'})
       .success(function(data, status, headers, config){
           console.log(data);
           if (data.error)
@@ -240,7 +240,7 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
     $http({
         method: 'POST',
         data: campign_data,
-        url: 'http://localhost:3000/campigns/create'}).
+        url: 'http://' + window.A.Configuration.host + '/campigns/create'}).
         success(function(data, status, headers, config) {
           if (data.err){
             //display error.
@@ -266,7 +266,7 @@ backOfficeApp.controller('campignsController', function($scope, $http, $location
     {
       //Get campign from server
       $http({method: 'GET',
-          url: 'http://localhost:3000/campings/get/' + parseInt($routeParams.id,10)}).
+          url: 'http://' + window.A.Configuration.host + '/campings/get/' + parseInt($routeParams.id,10)}).
           success(function(data, status, headers, config) {
             globalFunc.setCurrentCampign(data);
             $scope.currentCampign = data;
@@ -317,10 +317,10 @@ backOfficeApp.controller('logoutController', function ($scope, $http, $location)
 
   console.log('logout user');
 	$http({method: 'POST',
-	    url: 'http://localhost:3000/logout'}).
+	    url: 'http://' + window.A.Configuration.host + '/logout'}).
         success(function(data, status, headers, config) {
           	console.log(data);
-          	window.location = 'http://localhost:3000/';
+          	window.location = 'http://' + window.A.Configuration.host + '/';
         }).
         error(function(data, status, headers, config) {
           	console.log(data);
